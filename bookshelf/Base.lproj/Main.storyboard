@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="bookshelf" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="bookshelf" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -21,7 +22,19 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PWb-TZ-eE2">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PWb-TZ-eE2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DPW-MF-jMD"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="PWb-TZ-eE2" secondAttribute="bottom" id="jqk-oe-g7E"/>
+                            <constraint firstAttribute="trailing" secondItem="PWb-TZ-eE2" secondAttribute="trailing" id="l5g-6e-nrn"/>
+                            <constraint firstItem="PWb-TZ-eE2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="sfI-ku-q2j"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0Ip-wu-4r7">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="1hH-NI-byL">
@@ -30,31 +43,34 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="PWb-TZ-eE2" id="fkD-p7-XY8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="840.79999999999995" y="122.78860569715144"/>
         </scene>
-        <!--View Controller-->
+        <!--Book View Controller-->
         <scene sceneID="n5c-ea-o0P">
             <objects>
-                <viewController id="wYl-fp-PiO" sceneMemberID="viewController">
+                <viewController id="wYl-fp-PiO" customClass="BookViewController" customModule="bookshelf" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tnf-IP-gvF"/>
                         <viewControllerLayoutGuide type="bottom" id="Axo-a7-nK1"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ncV-hP-0JF">
+                    <view key="view" contentMode="scaleAspectFit" id="ncV-hP-0JF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vQQ-8b-ind">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DFM5LxMVYAA3Myz.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="vQQ-8b-ind">
                                 <rect key="frame" x="47" y="84" width="280" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="Vep-Aj-5Wv"/>
                                     <constraint firstAttribute="width" constant="280" id="XfS-Q0-0Fq"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YkK-W1-LyO">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YkK-W1-LyO">
                                 <rect key="frame" x="47.5" y="254" width="280" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -63,13 +79,18 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncy-x7-PwE">
                                 <rect key="frame" x="172" y="304" width="30" height="30"/>
                                 <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addTapped:" destination="wYl-fp-PiO" eventType="touchUpInside" id="Ury-s7-guz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Axo-a7-nK1" firstAttribute="top" secondItem="ncy-x7-PwE" secondAttribute="bottom" constant="333" id="NOL-u8-4aw"/>
                             <constraint firstItem="vQQ-8b-ind" firstAttribute="centerX" secondItem="ncV-hP-0JF" secondAttribute="centerX" id="OUi-WD-3pf"/>
                             <constraint firstItem="ncy-x7-PwE" firstAttribute="centerX" secondItem="ncV-hP-0JF" secondAttribute="centerX" id="PCs-5b-Xqy"/>
                             <constraint firstItem="vQQ-8b-ind" firstAttribute="top" secondItem="tnf-IP-gvF" secondAttribute="bottom" constant="20" id="fRj-0a-4M5"/>
+                            <constraint firstItem="YkK-W1-LyO" firstAttribute="leading" secondItem="ncV-hP-0JF" secondAttribute="leadingMargin" constant="31.5" id="fco-W3-KK3"/>
                             <constraint firstItem="YkK-W1-LyO" firstAttribute="top" secondItem="vQQ-8b-ind" secondAttribute="bottom" constant="20" id="jLW-hb-fKM"/>
                             <constraint firstItem="YkK-W1-LyO" firstAttribute="centerX" secondItem="ncV-hP-0JF" secondAttribute="centerX" id="mkm-JB-ozt"/>
                             <constraint firstItem="YkK-W1-LyO" firstAttribute="width" secondItem="vQQ-8b-ind" secondAttribute="width" id="qV0-uc-XMF"/>
@@ -78,10 +99,22 @@
                     </view>
                     <navigationItem key="navigationItem" id="5NI-dl-a3r">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="camera" id="xN8-yx-Goi"/>
-                            <barButtonItem title="Photos" id="FQb-xY-Ias" userLabel="Photos"/>
+                            <barButtonItem systemItem="camera" id="xN8-yx-Goi">
+                                <connections>
+                                    <action selector="cameraTapped:" destination="wYl-fp-PiO" id="uuH-Ur-c9x"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Photos" id="FQb-xY-Ias" userLabel="Photos">
+                                <connections>
+                                    <action selector="photosTapped:" destination="wYl-fp-PiO" id="Rwz-bE-aMv"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bookImageView" destination="vQQ-8b-ind" id="pyc-WE-9XR"/>
+                        <outlet property="titleTextField" destination="YkK-W1-LyO" id="cjF-L5-5TE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O3e-wa-y62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,4 +139,7 @@
             <point key="canvasLocation" x="-98.400000000000006" y="776.76161919040487"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="DFM5LxMVYAA3Myz.jpg" width="1024" height="1024"/>
+    </resources>
 </document>
